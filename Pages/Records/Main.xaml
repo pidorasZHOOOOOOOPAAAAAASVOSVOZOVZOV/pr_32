@@ -1,0 +1,24 @@
+﻿<Page x:Class="PR_32.Pages.Records.Main"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Пластинки">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="tbSearch" Margin="10" Height="30" TextChanged="TbSearch_TextChanged"/>
+
+        <ListView x:Name="lvItems" Grid.Row="1" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Название" Width="250" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Год" Width="80" DisplayMemberBinding="{Binding Year}"/>
+                    <GridViewColumn Header="Цена" Width="100" DisplayMemberBinding="{Binding Price}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
