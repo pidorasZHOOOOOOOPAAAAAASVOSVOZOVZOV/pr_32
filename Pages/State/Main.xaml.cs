@@ -4,11 +4,11 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Data;
 
-namespace WpfApp1.Pages.Records
+namespace WpfApp1.Pages.States
 {
     public partial class Main : Page
     {
-        public List<Record> items;
+        public List<Data.State> items;
 
         public Main()
         {
@@ -18,7 +18,7 @@ namespace WpfApp1.Pages.Records
 
         public void LoadData()
         {
-            items = Record.GetAll();
+            items = Data.State.GetAll();
             lvItems.ItemsSource = items;
         }
 
@@ -31,9 +31,14 @@ namespace WpfApp1.Pages.Records
                     x.Name.ToLower().Contains(tbSearch.Text.ToLower()));
         }
 
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.init.OpenPage(new Add());
+        }
+
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (lvItems.SelectedItem is Record selected)
+            if (lvItems.SelectedItem is Data.State selected)
             {
                 MainWindow.init.OpenPage(new Add(selected));
             }
@@ -41,7 +46,7 @@ namespace WpfApp1.Pages.Records
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (lvItems.SelectedItem is Record selected)
+            if (lvItems.SelectedItem is Data.State selected)
             {
                 if (MessageBox.Show($"Удалить {selected.Name}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {

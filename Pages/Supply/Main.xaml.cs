@@ -4,11 +4,11 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Data;
 
-namespace WpfApp1.Pages.Records
+namespace WpfApp1.Pages.Supply
 {
     public partial class Main : Page
     {
-        public List<Record> items;
+        public List<Supply> items;
 
         public Main()
         {
@@ -18,7 +18,7 @@ namespace WpfApp1.Pages.Records
 
         public void LoadData()
         {
-            items = Record.GetAll();
+            items = Supply.GetAll();
             lvItems.ItemsSource = items;
         }
 
@@ -28,12 +28,18 @@ namespace WpfApp1.Pages.Records
                 lvItems.ItemsSource = items;
             else
                 lvItems.ItemsSource = items.Where(x =>
-                    x.Name.ToLower().Contains(tbSearch.Text.ToLower()));
+                    x.ManufacturerName.ToLower().Contains(tbSearch.Text.ToLower()) ||
+                    x.RecordName.ToLower().Contains(tbSearch.Text.ToLower()));
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.init.OpenPage(new Add());
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (lvItems.SelectedItem is Record selected)
+            if (lvItems.SelectedItem is Supply selected)
             {
                 MainWindow.init.OpenPage(new Add(selected));
             }
@@ -41,9 +47,9 @@ namespace WpfApp1.Pages.Records
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (lvItems.SelectedItem is Record selected)
+            if (lvItems.SelectedItem is Supply selected)
             {
-                if (MessageBox.Show($"Удалить {selected.Name}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show($"Удалить поставку {selected.Id}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     selected.Delete();
                     LoadData();

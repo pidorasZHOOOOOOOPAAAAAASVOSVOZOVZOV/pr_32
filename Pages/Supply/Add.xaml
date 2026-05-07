@@ -1,0 +1,27 @@
+﻿<Page x:Class="WpfApp1.Pages.Supply.Add"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Добавить поставку">
+    <Grid Background="#FFE6E6E6">
+        <Border Background="White" Margin="20" CornerRadius="10">
+            <StackPanel Margin="20">
+                <TextBlock Text="Добавление поставки" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <Label Content="ID Производителя:"/>
+                <TextBox x:Name="tbIdManufacturer" Margin="0,5,0,10" Height="35"/>
+
+                <Label Content="ID Пластинки:"/>
+                <TextBox x:Name="tbIdRecord" Margin="0,5,0,10" Height="35"/>
+
+                <Label Content="Дата поставки:"/>
+                <DatePicker x:Name="dpDateDelivery" Margin="0,5,0,10" Height="35"/>
+
+                <Label Content="Количество:"/>
+                <TextBox x:Name="tbCount" Margin="0,5,0,10" Height="35"/>
+
+                <Button Content="Сохранить" Click="Save_Click" Background="#FF9800" 
+                        Foreground="White" FontWeight="Bold" Height="40" Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

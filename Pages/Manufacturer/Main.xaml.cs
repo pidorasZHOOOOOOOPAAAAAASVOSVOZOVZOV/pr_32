@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using WpfApp1.Data;
 
-namespace PR_32.Pages.Manufacturer
+namespace WpfApp1.Pages.Manufacturers
 {
     public partial class Main : Page
     {
-        public IEnumerable<Classes.Manufacturer> items;
+        public List<Data.Manufacturer> items;
 
         public Main()
         {
@@ -16,7 +18,7 @@ namespace PR_32.Pages.Manufacturer
 
         public void LoadData()
         {
-            items = Classes.Manufacturer.AllManufactures();
+            items = Data.Manufacturer.GetAll();
             lvItems.ItemsSource = items;
         }
 
@@ -27,6 +29,26 @@ namespace PR_32.Pages.Manufacturer
             else
                 lvItems.ItemsSource = items.Where(x =>
                     x.Name.ToLower().Contains(tbSearch.Text.ToLower()));
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvItems.SelectedItem is Data.Manufacturer selected)
+            {
+                MainWindow.init.OpenPage(new Add(selected));
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvItems.SelectedItem is Data.Manufacturer selected)
+            {
+                if (MessageBox.Show($"Удалить {selected.Name}?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    selected.Delete();
+                    LoadData();
+                }
+            }
         }
     }
 }

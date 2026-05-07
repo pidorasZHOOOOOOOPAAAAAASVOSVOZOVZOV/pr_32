@@ -1,7 +1,7 @@
-﻿<Page x:Class="WpfApp1.Pages.Records.Main"
+﻿<Page x:Class="WpfApp1.Pages.State.Main"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Пластинки">
+      Title="Состояния">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,12 +14,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Название" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Год" Width="60" DisplayMemberBinding="{Binding Year}"/>
-                    <GridViewColumn Header="Формат" Width="60" DisplayMemberBinding="{Binding FormatName}"/>
-                    <GridViewColumn Header="Производитель" Width="150" DisplayMemberBinding="{Binding ManufacturerName}"/>
-                    <GridViewColumn Header="Цена" Width="80" DisplayMemberBinding="{Binding Price}"/>
-                    <GridViewColumn Header="Состояние" Width="100" DisplayMemberBinding="{Binding StateName}"/>
+                    <GridViewColumn Header="Название" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Код" Width="80" DisplayMemberBinding="{Binding Subname}"/>
+                    <GridViewColumn Header="Описание" Width="400" DisplayMemberBinding="{Binding Description}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -27,6 +24,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
             <Button Content="Редактировать" Width="100" Margin="5" Click="Edit_Click"/>
             <Button Content="Удалить" Width="100" Margin="5" Click="Delete_Click"/>
+            <Button Content="Добавить" Width="100" Margin="5" Click="Add_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml.Linq;
 using WpfApp1.Data;
 
-namespace WpfApp1.Pages.Manufacturers
+namespace WpfApp1.Pages.State
 {
     public partial class Add : Page
     {
-        private Data.Manufacturer _editItem;
+        private State _editItem;
 
         public Add()
         {
             InitializeComponent();
         }
 
-        public Add(Data.Manufacturer item)
+        public Add(State item)
         {
             InitializeComponent();
             _editItem = item;
             tbName.Text = item.Name;
-            tbCountryCode.Text = item.CountryCode.ToString();
-            tbPhone.Text = item.Phone;
-            tbEmail.Text = item.Mail;
+            tbSubname.Text = item.Subname;
+            tbDescription.Text = item.Description;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -31,21 +29,19 @@ namespace WpfApp1.Pages.Manufacturers
             {
                 if (_editItem == null)
                 {
-                    Data.Manufacturer item = new Data.Manufacturer()
+                    State item = new State()
                     {
                         Name = tbName.Text,
-                        CountryCode = int.Parse(tbCountryCode.Text),
-                        Phone = tbPhone.Text,
-                        Mail = tbEmail.Text
+                        Subname = tbSubname.Text,
+                        Description = tbDescription.Text
                     };
                     item.Save();
                 }
                 else
                 {
                     _editItem.Name = tbName.Text;
-                    _editItem.CountryCode = int.Parse(tbCountryCode.Text);
-                    _editItem.Phone = tbPhone.Text;
-                    _editItem.Mail = tbEmail.Text;
+                    _editItem.Subname = tbSubname.Text;
+                    _editItem.Description = tbDescription.Text;
                     _editItem.Update();
                 }
                 MessageBox.Show("Сохранено!");
